@@ -1,0 +1,11 @@
+Attribute VB_Name = "Module1"
+Sub Set_cells()
+
+
+Cells(1, 10).Value = "Ticker"
+Cells(1, 11).Value = "Yearly Change"
+Cells(1, 12).Value = "Percentage Change"
+Cells(1, 13).Value = "Stock Value"
+
+
+End Sub

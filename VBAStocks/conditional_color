@@ -1,0 +1,21 @@
+Attribute VB_Name = "Module4"
+Sub conditional_colors()
+
+row = Cells(Rows.Count, "K").End(xlUp).row
+
+For x = 2 To row
+
+    If Cells(x + 1, 1).Value <> Cells(x, 1).Value Then
+
+    ElseIf Cells(x, 11).Value <= 0 Then
+    
+     Cells(x, 11).Interior.ColorIndex = 3
+    
+     ElseIf Cells(x, 11).Value >= 0 Then
+    
+        Cells(x, 11).Interior.ColorIndex = 4
+    
+    
+    End If
+Next x
+End Sub

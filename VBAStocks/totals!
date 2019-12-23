@@ -1,0 +1,78 @@
+Attribute VB_Name = "Module2"
+Sub totals()
+
+Dim ticker As String
+Dim percentage_change As Single
+Dim total_rows As Long
+    
+    percentage_change = 0
+    total_stock = 0
+    SummaryTableRow = 0
+    y = 2
+    
+total_rows = Cells(Rows.Count, "A").End(xlUp).row
+
+For x = 2 To total_rows
+
+If Cells(x + 1, 1).Value <> Cells(x, 1).Value Then
+    ticker = Cells(x, 1).Value
+   total_stock = total_stock + Cells(x, 7).Value
+
+    
+If total_stock = 0 Then
+
+    Range("J" & SummaryTableRow + 2).Value = ticker
+    Range("K" & SummaryTableRow + 2).Value = 0
+    Range("L" & SummaryTableRow + 2).Value = "%" & 0
+    Range("M" & SummaryTableRow + 2).Value = 0
+    
+    Else
+        If Cells(y, 3).Value = 0 Then
+        For Result = y To x
+            If Cells(Result, 3) <> 0 Then
+                y = Result
+                Exit For
+                End If
+            Next Result
+            
+
+        End If
+        
+
+   yearly_change = Cells(x, 6) - Cells(y, 3)
+
+percentage_change = Round(((yearly_change / Cells(y, 3)) * 100), 2)
+   
+   
+     y = x + 1
+   
+   Range("J" & SummaryTableRow + 2).Value = ticker
+    Range("K" & SummaryTableRow + 2).Value = Round(yearly_change, 2)
+    Range("L" & SummaryTableRow + 2).Value = "%" & percentage_change
+    Range("M" & SummaryTableRow + 2).Value = total_stock
+    
+    
+    End If
+    
+    
+   
+
+    SummaryTableRow = SummaryTableRow + 1
+    total_stock = 0
+    yearly_change = 0
+    
+    
+    
+Else
+
+    total_stock = total_stock + Cells(x, 7).Value
+
+    
+    
+    End If
+    
+Next x
+
+
+    
+End Sub
